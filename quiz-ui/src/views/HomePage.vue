@@ -16,13 +16,22 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <div class="homepage">
     <h1>Home page</h1>
 
-    <div v-for="scoreEntry in registeredScores" v-bind:key="scoreEntry.date">
-      {{ scoreEntry.name }} - {{ scoreEntry.score }}
+    <div class="score-entry" v-for="scoreEntry in registeredScores" v-bind:key="scoreEntry.date">
+      <span class="name">{{ scoreEntry.name }}</span>
+      -
+      <span class="score">{{ scoreEntry.score }}</span>
     </div>
 
     <RouterLink to="/new-quiz">Démarrer le quiz !</RouterLink>
   </div>
 </template>
+
+<style>
+.homepage {
+  font-size: larger;
+  color: gray;
+}
+</style>
