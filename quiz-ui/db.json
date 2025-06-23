@@ -1,0 +1,6 @@
+{
+  "quiz-info": [
+    { "name": "Alice", "score": 12 },
+    { "name": "Bob", "score": 8 }
+  ]
+}
