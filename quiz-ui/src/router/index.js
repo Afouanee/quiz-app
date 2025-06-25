@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import NewQuizPage from '../views/NewQuizPage.vue';
+import QuestionsManager from '../views/QuestionsManager.vue';
+import ScoreDisplay from '@/components/ScoreDisplay.vue';
 
 const routes = [
   {
@@ -12,6 +14,16 @@ const routes = [
     path: '/new-quiz',
     name: 'NewQuizPage',
     component: NewQuizPage,
+  },
+  {
+    path: '/questions',
+    name: 'QuestionsManager',
+    component: QuestionsManager,
+  },
+  {
+    path: '/score',
+    name: 'ScoreDisplay',
+    component: ScoreDisplay,
   },
 ];
 

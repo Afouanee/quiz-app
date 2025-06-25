@@ -4,11 +4,17 @@ import ParticipationStorageService from '@/services/ParticipationStorageService'
 import { useRouter } from 'vue-router';
 
 const username = ref('');
+const showError = ref(false);
 const router = useRouter();
 
 function launchNewQuiz() {
+  if (!username.value.trim()) {
+    showError.value = true;
+    return;
+  }
+
+  showError.value = false;
   ParticipationStorageService.savePlayerName(username.value);
-  console.log('Nom enrengistré :', username.value);
   router.push('/questions');
 }
 </script>
@@ -20,6 +26,9 @@ function launchNewQuiz() {
     <input type="text" class="form-control" placeholder="Username" v-model="username" />
 
     <button class="btn btn-outline-danger mt-3" @click="launchNewQuiz">GO!</button>
+    <p v-if="showError" class="text-danger mt-2">
+      ⚠️ Veuillez entrer un nom pour commencer le quiz.
+    </p>
   </div>
 </template>
 
