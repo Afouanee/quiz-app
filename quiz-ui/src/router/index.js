@@ -3,6 +3,7 @@ import HomePage from '../views/HomePage.vue';
 import NewQuizPage from '../views/NewQuizPage.vue';
 import QuestionsManager from '../views/QuestionsManager.vue';
 import ScoreDisplay from '@/components/ScoreDisplay.vue';
+import AdminPage from '@/views/AdminPage.vue';
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/score',
     name: 'ScoreDisplay',
     component: ScoreDisplay,
+  },
+  {
+    path: '/admin',
+    name: 'AdminPage',
+    component: AdminPage,
   },
 ];
 

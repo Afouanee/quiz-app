@@ -27,6 +27,7 @@ export default {
         console.error(error);
       });
   },
+
   getQuestion(position) {
     // not implemented
   },
