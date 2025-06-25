@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import QuestionDisplay from '@/components/QuestionDisplay.vue';
 import ScoreDisplay from '@/components/ScoreDisplay.vue';
 import ParticipationStorageService from '@/services/ParticipationStorageService';
+import QuizApiService from '@/services/QuizApiService';
 
 const currentQuestionPosition = ref(0);
 const currentQuestion = ref(null);
@@ -32,6 +33,22 @@ function answerClickedHandler(index) {
 
 function endQuiz() {
   ParticipationStorageService.saveParticipationScore(score.value);
+  const playerName = ParticipationStorageService.getPlayerName();
+
+  if (playerName) {
+    QuizApiService.saveScore({
+      name: playerName,
+      score: score.value,
+      date: new Date().toISOString(),
+    })
+      .then(() => {
+        console.log('Score enregistré avec succès.');
+      })
+      .catch((err) => {
+        console.error("Erreur lors de l'enregistrement du score :", err);
+      });
+  }
+
   quizEnded.value = true;
 }
 

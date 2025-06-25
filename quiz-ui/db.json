@@ -1,21 +1,49 @@
 {
   "quiz-info": [
-    { "name": "Alice", "score": 12 },
-    { "name": "Bob", "score": 8 }
+    {
+      "name": "Alice",
+      "score": 12
+    },
+    {
+      "name": "Bob",
+      "score": 8
+    },
+    {
+      "id": "7308",
+      "name": "htr",
+      "score": 2,
+      "date": "2025-06-25T20:07:59.255Z"
+    },
+    {
+      "id": "2183",
+      "name": "Tdfe",
+      "score": 2,
+      "date": "2025-06-25T20:08:21.261Z"
+    }
   ],
   "questions": [
     {
       "id": 1,
       "text": "Quelle est la capitale de la France ?",
       "image": "",
-      "choices": ["Berlin", "Paris", "Madrid", "Rome"],
+      "choices": [
+        "Berlin",
+        "Paris",
+        "Madrid",
+        "Rome"
+      ],
       "answer": 1
     },
     {
       "id": 2,
       "text": "Combien font 2 + 2 ?",
       "image": "",
-      "choices": ["3", "4", "5", "22"],
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "22"
+      ],
       "answer": 1
     }
   ]
