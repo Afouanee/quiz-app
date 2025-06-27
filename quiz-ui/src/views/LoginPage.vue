@@ -16,7 +16,7 @@ async function login() {
 
     const token = res.data.token;
     if (token) {
-      localStorage.setItem('adminToken', token);
+      localStorage.setItem('token', token); // ✅ cohérent avec App.vue
       router.push('/admin');
     } else {
       error.value = 'Token manquant dans la réponse.';
@@ -39,7 +39,7 @@ async function login() {
       class="form-control"
     />
 
-    <button class="btn btn-primary mt-3" @click="login">Se connecter</button>
+    <button class="btn btn-primary mt-3" @click="login">Connexion</button>
 
     <div v-if="error" class="text-danger mt-2">{{ error }}</div>
   </div>
@@ -60,5 +60,14 @@ input {
   margin-top: 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: teal;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 </style>

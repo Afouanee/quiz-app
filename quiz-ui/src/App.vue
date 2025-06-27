@@ -1,5 +1,19 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { computed } from 'vue'
+
+const router = useRouter()
+
+// Vérifie si on est connecté
+const isLoggedIn = computed(() => {
+  return !!localStorage.getItem('token')
+})
+
+// Déconnexion
+const logout = () => {
+  localStorage.removeItem('token')
+  router.push('/')
+}
 </script>
 
 <template>
@@ -7,8 +21,8 @@ import { RouterLink, RouterView } from 'vue-router';
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/admin">Admin</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink :to="isLoggedIn ? '/admin' : '/login'">Admin</RouterLink>
+        <button v-if="isLoggedIn" @click="logout">Déconnexion</button>
       </nav>
     </div>
   </header>
@@ -42,13 +56,20 @@ nav a.router-link-exact-active:hover {
   background-color: transparent;
 }
 
-nav a {
+nav a,
+nav button {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  background: none;
+  border: none;
+  color: teal;
+  font-size: inherit;
+  cursor: pointer;
 }
 
-nav a:first-of-type {
+nav a:first-of-type,
+nav button:first-of-type {
   border: 0;
 }
 

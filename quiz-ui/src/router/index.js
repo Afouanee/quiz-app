@@ -30,13 +30,23 @@ const routes = [
   { 
     path: '/login',
     name: 'Login', 
-    component: LoginPage },
+    component: LoginPage
+  },
   {
     path: '/admin',
     name: 'AdminPage',
     component: AdminPage,
+    beforeEnter: (to, from, next) => {
+      const token = localStorage.getItem('token')
+      if (token) {
+        next()
+      } else {
+        next('/login')
+      }
+    }
   },
 ];
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

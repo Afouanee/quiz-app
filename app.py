@@ -15,6 +15,12 @@ from database import (
     delete_all_participations,
     add_participation
 )
+import subprocess
+import threading
+import time
+import requests
+import random 
+
 
 app = Flask(__name__)
 CORS(app)
@@ -36,14 +42,10 @@ def GetQuizInfo():
     size, scores = get_quiz_info()
     return jsonify({"size": size, "scores": scores}), 200
 
-
-from flask import request, jsonify
-from jwt_utils import build_token
-
 @app.route('/login', methods=['POST'])
 def login():
     payload = request.get_json()
-    print("[DEBUG] /login reçu avec payload :", payload)  # AJOUTE CECI
+    print("[DEBUG] /login reçu avec payload :", payload)
     if not payload or 'password' not in payload:
         return jsonify({"error": "Missing password"}), 400
 
@@ -53,9 +55,8 @@ def login():
     else:
         return jsonify({
             "error": "Incorrect password",
-            "received": payload["password"]  # <- Affiche ce qu'il a reçu
+            "received": payload["password"]
         }), 401
-
 
 @app.route('/questions', methods=['POST'])
 def post_question():
@@ -88,9 +89,11 @@ def get_questions():
     else:
         try:
             questions = get_all_questions()
-            return jsonify(questions), 200
+            selected_questions = random.sample(questions, min(10, len(questions)))
+            return jsonify(selected_questions), 200
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
 
 @app.route('/questions/<int:id>', methods=['GET'])
 def get_question_by_id_route(id):
@@ -172,7 +175,6 @@ def post_participation():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-    
 @app.route('/questions/position/<int:position>', methods=['GET'])
 def get_question_by_position_route(position):
     question = get_question_by_position(position)
@@ -181,6 +183,27 @@ def get_question_by_position_route(position):
     else:
         return jsonify({'error': 'Not Found'}), 404
 
-
 if __name__ == "__main__":
-    app.run()
+    def run_server():
+        try:
+            app.run()
+        except KeyboardInterrupt:
+            print("⛔ Serveur interrompu")
+
+
+    def run_inject_script():
+        print("⏳ Attente du serveur Flask...")
+        for _ in range(10):  # maximum 10 tentatives
+            try:
+                response = requests.post("http://localhost:5000/login", json={"password": "iloveflask"})
+                if response.status_code == 200:
+                    print("✅ Serveur prêt, injection des questions...")
+                    subprocess.run(["python", "./inject_question.py"])
+                    return
+            except Exception:
+                pass
+            time.sleep(1)
+        print("❌ Échec : le serveur ne répond pas après 10 secondes.")
+
+    threading.Thread(target=run_server).start()
+    threading.Thread(target=run_inject_script).start()

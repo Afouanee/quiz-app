@@ -11,114 +11,126 @@ if login_response.status_code != 200:
 token = login_response.json()["token"]
 headers = {"Authorization": f"Bearer {token}"}
 
-# Liste des 10 questions
+# Nouveau questionnaire séries
 questions = [
     {
         "position": 1,
-        "title": "Capitales",
-        "text": "Quelle est la capitale de la France ?",
+        "title": "Stranger Things",
+        "text": "Comment s'appelle le monde parallèle dans la série Stranger Things ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "Paris", "isCorrect": True },
-            { "text": "Londres", "isCorrect": False },
-            { "text": "Madrid", "isCorrect": False }
+            {"text": "L'Autre Côté", "isCorrect": False},
+            {"text": "Le Monde Inversé", "isCorrect": True},
+            {"text": "L'Entre-Monde", "isCorrect": False},
+            {"text": "Le No Man's Land", "isCorrect": False}
         ]
     },
     {
         "position": 2,
-        "title": "Math",
-        "text": "Combien font 2 + 2 ?",
+        "title": "Squid Game",
+        "text": "Quel est le premier jeu auquel les participants jouent dans Squid Game ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "4", "isCorrect": True },
-            { "text": "22", "isCorrect": False }
+            {"text": "Le tir à la corde", "isCorrect": False},
+            {"text": "Un, deux, trois, soleil", "isCorrect": True},
+            {"text": "Le jeu des billes", "isCorrect": False},
+            {"text": "Le pont de verre", "isCorrect": False}
         ]
     },
     {
         "position": 3,
-        "title": "Animaux",
-        "text": "Quels sont des mammifères ?",
+        "title": "La Casa de Papel",
+        "text": "Quel est le nom de code du personnage principal dans La Casa de Papel ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "Chien", "isCorrect": True },
-            { "text": "Chat", "isCorrect": True },
-            { "text": "Crocodile", "isCorrect": False }
+            {"text": "Madrid", "isCorrect": False},
+            {"text": "Le Professeur", "isCorrect": True},
+            {"text": "Barcelone", "isCorrect": False},
+            {"text": "Colonel", "isCorrect": False}
         ]
     },
     {
         "position": 4,
-        "title": "Langages",
-        "text": "Lequel n'est pas un langage de programmation ?",
+        "title": "Breaking Bad",
+        "text": "Quel est le métier d’origine de Walter White dans Breaking Bad ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "Python", "isCorrect": False },
-            { "text": "HTML", "isCorrect": True },
-            { "text": "C++", "isCorrect": False }
+            {"text": "Chimiste", "isCorrect": True},
+            {"text": "Médecin", "isCorrect": False},
+            {"text": "Avocat", "isCorrect": False},
+            {"text": "Policier", "isCorrect": False}
         ]
     },
     {
         "position": 5,
-        "title": "Géographie",
-        "text": "L'Australie est un...",
+        "title": "Sex Education",
+        "text": "Quel est le prénom du personnage principal de Sex Education ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "Continent", "isCorrect": True },
-            { "text": "Pays", "isCorrect": True },
-            { "text": "Océan", "isCorrect": False }
+            {"text": "Otis", "isCorrect": True},
+            {"text": "Eric", "isCorrect": False},
+            {"text": "Adam", "isCorrect": False},
+            {"text": "Jackson", "isCorrect": False}
         ]
     },
     {
         "position": 6,
-        "title": "Fruits",
-        "text": "Laquelle de ces options est un fruit ?",
+        "title": "13 Reasons Why",
+        "text": "Pourquoi Hannah Baker laisse-t-elle des cassettes dans 13 Reasons Why ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "Tomate", "isCorrect": True },
-            { "text": "Carotte", "isCorrect": False },
-            { "text": "Pomme", "isCorrect": True }
+            {"text": "Pour parler de ses vacances", "isCorrect": False},
+            {"text": "Pour expliquer son suicide", "isCorrect": True},
+            {"text": "Pour annoncer une fête", "isCorrect": False},
+            {"text": "Pour accuser son professeur", "isCorrect": False}
         ]
     },
     {
         "position": 7,
-        "title": "Vide",
-        "text": "Aucune réponse correcte ici",
+        "title": "You",
+        "text": "Quel est le prénom du personnage principal dans la série You ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "Option 1", "isCorrect": False },
-            { "text": "Option 2", "isCorrect": False }
+            {"text": "Ben", "isCorrect": False},
+            {"text": "Joe", "isCorrect": True},
+            {"text": "Luke", "isCorrect": False},
+            {"text": "Tom", "isCorrect": False}
         ]
     },
     {
         "position": 8,
-        "title": "Histoire",
-        "text": "En quelle année a débuté la Seconde Guerre mondiale ?",
+        "title": "Dark",
+        "text": "Quel pays est à l’origine de la série Dark ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "1939", "isCorrect": True },
-            { "text": "1945", "isCorrect": False },
-            { "text": "1914", "isCorrect": False }
+            {"text": "Allemagne", "isCorrect": True},
+            {"text": "Suède", "isCorrect": False},
+            {"text": "États-Unis", "isCorrect": False},
+            {"text": "Canada", "isCorrect": False}
         ]
     },
     {
         "position": 9,
-        "title": "Couleurs primaires",
-        "text": "Lesquelles sont des couleurs primaires ?",
+        "title": "Lupin",
+        "text": "Quel acteur incarne le rôle principal dans Lupin ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "Rouge", "isCorrect": True },
-            { "text": "Vert", "isCorrect": False },
-            { "text": "Bleu", "isCorrect": True },
-            { "text": "Jaune", "isCorrect": True }
+            {"text": "Omar Sy", "isCorrect": True},
+            {"text": "Tahar Rahim", "isCorrect": False},
+            {"text": "Reda Kateb", "isCorrect": False},
+            {"text": "Vincent Cassel", "isCorrect": False}
         ]
     },
     {
         "position": 10,
-        "title": "Logique",
-        "text": "Complétez : Si A > B et B > C alors...",
+        "title": "Arcane",
+        "text": "Arcane est basé sur l’univers de quel jeu vidéo ?",
         "image": "",
         "possibleAnswers": [
-            { "text": "A > C", "isCorrect": True },
-            { "text": "C > A", "isCorrect": False }
+            {"text": "Fortnite", "isCorrect": False},
+            {"text": "League of Legends", "isCorrect": True},
+            {"text": "Overwatch", "isCorrect": False},
+            {"text": "Valorant", "isCorrect": False}
         ]
     }
 ]
