@@ -45,7 +45,3 @@ requirements.txt       # dépendances Python
 quiz-ui/               # frontend Vue.js (Vite)
 Quiz TDD.postman_collection.json  # tests d'API (Postman)
 ```
-
----
-🔗 **Fiche projet** : [afouanee.dev/projects/quiz-app](https://afouanee.dev/projects/quiz-app)
-👤 **Auteur** : Afouane MOUHAMAD — [Portfolio](https://afouanee.dev) · [LinkedIn](https://linkedin.com/in/afouane-mouhamad)
