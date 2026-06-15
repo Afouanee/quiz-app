@@ -1,110 +1,51 @@
-# Quiz App
+# Quiz App ❓
 
-Application web de quiz avec un backend en Python (Flask) et un frontend en Vue.js (Vite).
+> **Application web de quiz interactif (Flask + Vue.js) avec score final et back-office d'administration.**
 
----
+![Python](https://img.shields.io/badge/Python-14b8a6?style=flat-square)
+![Type](https://img.shields.io/badge/Projet%20perso-555?style=flat-square)
+[![Portfolio](https://img.shields.io/badge/Portfolio-afouanee.dev-14b8a6?style=flat-square)](https://afouanee.dev/projects/quiz-app)
 
-## Fonctionnalités
+## ✨ Aperçu
+Application web full-stack composée d'une API backend en Flask et d'un frontend Vue.js (build Vite). L'utilisateur répond à un quiz interactif et obtient un score final. Une interface d'administration protégée par mot de passe permet de gérer les questions (ajout, modification, suppression) et de consulter les participations et les scores. Les données sont persistées dans une base SQLite, avec un jeu de questions de départ injecté automatiquement.
 
-### Frontend (Vue.js)
+## 🚀 Fonctionnalités
+- **Quiz interactif** : enchaînement des questions et affichage du score final.
+- **Interface d'administration** : authentification par mot de passe, jeton admin stocké dans le `localStorage`.
+- **CRUD des questions** : création, modification et suppression depuis le back-office.
+- **Suivi des participations** : consultation des participants et de leurs scores.
+- **Base SQLite** : tables `QUESTIONS` (titres, textes, images, réponses en JSON) et `PARTICIPATIONS` (joueur, score, date) ; réinitialisation et injection des données via `/rebuild-db` à partir de `ui/public/quizz.json`.
 
-- Interface utilisateur pour :
-  - répondre à un quiz interactif
-  - afficher le score final
-- Interface d’administration (authentifiée par mot de passe) permettant :
-  - ajout, modification, suppression de questions
-  - visualisation des participations et scores
-- Le token admin est stocké dans le navigateur (`localStorage`)
+## 🛠️ Stack technique
+- **Langage** : Python ≥ 3.12 (backend) + JavaScript (frontend)
+- **Bibliothèques / frameworks** : Flask (API REST), JWT (`jwt_utils`), Vue.js
+- **Outils** : Vite (build frontend), SQLite, collections Postman pour les tests
 
-### Backend (Flask)
-
-- Accès réservé aux administrateurs (authentification par mot de passe)
-- Ajout, modification et suppression de questions
-- Visualisation des participants et de leurs scores
-
-### Base de données (SQLite)
-
-Deux tables principales :
-
-- `QUESTIONS` : liste des questions, titres, textes, images et réponses possibles (sous forme JSON)
-- `PARTICIPATIONS` : nom du joueur, score et date de participation
-
-Les données de départ sont automatiquement injectées à partir du fichier `ui/public/quizz.json` lors de la réinitialisation via `/rebuild-db`.
-
----
-
-## Installation et lancement
-
-### Prérequis
-
-- Python ≥ 3.12
-- Node.js et npm
-
----
-
-### 1. Cloner le dépôt
-
+## ▶️ Lancer le projet
 ```bash
-git clone https://github.com/Afouanee/quiz-app.git
-cd quiz-app
-```
-
----
-
-### 2. Installation du back-end
-
-1. Créez un environnement virtuel et activez-le :
-
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-2. Installez les dépendances Python :
-
-```bash
+# Backend (API Flask)
+python -m venv venv && source venv/bin/activate   # Windows : venv\Scripts\activate
 pip install -r requirements.txt
 pip install requests
-```
-
-3. Lancez le serveur Flask :
-
-```bash
 python app.py
-```
 
-Le backend tourne sur : `http://localhost:5000`
-
----
-
-### 3. Installation du front-end
-
-1. Placez-vous dans le dossier du frontend :
-
-```bash
-cd quiz-ui
-```
-
-2. Installez les dépendances Node.js :
-
-```bash
+# Frontend (Vue.js / Vite) — dans quiz-ui/
 npm install
-```
-
-3. Lancez le serveur Vue.js :
-
-```bash
 npm run dev
 ```
 
-Le frontend tourne sur : `http://localhost:3000`
+## 📂 Structure
+```
+app.py                 # point d'entrée de l'API Flask
+database.py            # accès SQLite (bdd.db)
+question.py            # routes / logique des questions
+inject_question.py     # injection des questions de départ
+jwt_utils.py           # authentification par jeton
+requirements.txt       # dépendances Python
+quiz-ui/               # frontend Vue.js (Vite)
+Quiz TDD.postman_collection.json  # tests d'API (Postman)
+```
 
-### 4. Base de données 
-
-![image](https://github.com/user-attachments/assets/51b7e727-ed69-4dd3-bcbf-b639267f7631)
-
+---
+🔗 **Fiche projet** : [afouanee.dev/projects/quiz-app](https://afouanee.dev/projects/quiz-app)
+👤 **Auteur** : Afouane MOUHAMAD — [Portfolio](https://afouanee.dev) · [LinkedIn](https://linkedin.com/in/afouane-mouhamad)
