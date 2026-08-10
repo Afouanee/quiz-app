@@ -188,22 +188,22 @@ if __name__ == "__main__":
         try:
             app.run()
         except KeyboardInterrupt:
-            print("⛔ Serveur interrompu")
+            print("[ARRET] Serveur interrompu")
 
 
     def run_inject_script():
-        print("⏳ Attente du serveur Flask...")
+        print("[ATTENTE] Attente du serveur Flask...")
         for _ in range(10):  # maximum 10 tentatives
             try:
                 response = requests.post("http://localhost:5000/login", json={"password": "iloveflask"})
                 if response.status_code == 200:
-                    print("✅ Serveur prêt, injection des questions...")
+                    print("[OK] Serveur pret, injection des questions...")
                     subprocess.run(["python", "./inject_question.py"])
                     return
             except Exception:
                 pass
             time.sleep(1)
-        print("❌ Échec : le serveur ne répond pas après 10 secondes.")
+        print("[ERREUR] Echec : le serveur ne repond pas apres 10 secondes.")
 
     threading.Thread(target=run_server).start()
     threading.Thread(target=run_inject_script).start()

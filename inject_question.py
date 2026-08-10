@@ -5,7 +5,7 @@ API_URL = "http://localhost:5000"
 # Authentification pour obtenir le token admin
 login_response = requests.post(f"{API_URL}/login", json={"password": "iloveflask"})
 if login_response.status_code != 200:
-    print("❌ Erreur d'authentification :", login_response.text)
+    print("[ERREUR] Erreur d'authentification :", login_response.text)
     exit()
 
 token = login_response.json()["token"]
@@ -139,6 +139,6 @@ questions = [
 for question in questions:
     res = requests.post(f"{API_URL}/questions", headers=headers, json=question)
     if res.status_code == 200:
-        print(f"✅ Question '{question['title']}' ajoutée avec succès.")
+        print(f"[OK] Question '{question['title']}' ajoutee avec succes.")
     else:
-        print(f"❌ Erreur pour '{question['title']}' :", res.text)
+        print(f"[ERREUR] Erreur pour '{question['title']}' :", res.text)
